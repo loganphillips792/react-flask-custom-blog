@@ -8,3 +8,4 @@ pylint
 python-dotenv
 boto3
 flask_sqlalchemy
+pytz

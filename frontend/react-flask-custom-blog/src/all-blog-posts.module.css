@@ -1,0 +1,13 @@
+.blog-posts-container {
+    border: 2px solid red;
+}
+
+.blog-post-container {
+    border-bottom: 2px solid grey;
+    padding-top:  16px;
+    padding-bottom: 16px;
+}
+
+.red {
+    color: red;
+}
