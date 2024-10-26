@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import style from "../markdown-styles.module.css";
 import { config } from "../constants";
+
+
 const url = config.url.BASE_URL;
 
 interface Post {
