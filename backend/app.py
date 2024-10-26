@@ -5,10 +5,36 @@ from sqlalchemy.orm import Mapped, mapped_column
 from flask_cors import CORS
 import datetime
 import pytz
+from logging.config import dictConfig
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
+
+load_dotenv()
+
+SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URI')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+
 db = SQLAlchemy(app)
 
 # https://docs.sqlalchemy.org/en/20/core/types.html
@@ -24,8 +50,8 @@ class BlogPost(db.Model):
     created_at: Mapped[datetime.datetime] = mapped_column(db.DateTime, default=datetime.datetime.now(datetime.timezone.utc)) 
 
     def to_dict(self):
-        for tz in pytz.all_timezones:
-            print(tz)
+        # for tz in pytz.all_timezones:
+            # print(tz)
         # The given UTC timestamp
         utc_timestamp = str(self.created_at)
 
@@ -67,6 +93,7 @@ def save_blog_post():
 
 @app.route('/api/all-blog-posts', methods=['GET'])
 def get_all_blog_posts():
+    app.logger.info('getting all blog posts...')
     posts = BlogPost.query.order_by(BlogPost.created_at.desc()).all()
     return jsonify([post.to_dict() for post in posts])
 

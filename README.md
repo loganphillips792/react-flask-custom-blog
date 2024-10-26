@@ -1,12 +1,14 @@
 # react-flask-custom-blog
 
+# TODO:
+
+- Use flask login for authentication for blog
+
 # Frontend
 
-cd frontend/react-flask-custom-blog
-
-npm install
-
-npm run dev
+1. cd frontend/react-flask-custom-blog
+2. npm install
+3. npm run dev
 
 ## Run Prettier
 
@@ -24,12 +26,11 @@ npm run lint
 2. ```source ~/Desktop/CustomBlog/bin/activate``` - this line activates the virtual environment so your Python will use an packages that are installed in it
 3. ```which pip``` to verify what is being used (Should point to the one from the virtual environment)
 4. ```~/Desktop/CustomBlog/bin/python3 -m pip install --upgrade pip```
-5. ```pip install -r requirements.txt```
+5. ```pip install -r backend/requirements.txt```
 
 ## Running the application
 
-cd backend
-
-python backend/db/__init__db.py
-
-python app.py
+1. cd backend
+2. Create .env file based off of .env.example
+3. python db/__init__db.py
+4. python app.py
