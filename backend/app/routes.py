@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
+from functools import wraps
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.models import User, BlogPost
@@ -84,3 +84,27 @@ def check_auth():
             'user': {'id': user.id, 'username': user.username}
         })
     return jsonify({'authenticated': False}), 401
+
+# Authentication decorator
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            return jsonify({'message': 'Unauthorized'}), 401
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+# @app.route('/protected', methods=['GET'])
+# @login_required
+# def protected():
+#     conn = sqlite3.connect('blog.db')
+#     c = conn.cursor()
+#     c.execute('SELECT username FROM users WHERE id = ?', (session['user_id'],))
+#     user = c.fetchone()
+#     conn.close()
+    
+#     return jsonify({
+#         'message': 'This is a protected route',
+#         'user': user[0]
+#     })
