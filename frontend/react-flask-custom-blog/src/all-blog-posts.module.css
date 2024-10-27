@@ -3,11 +3,10 @@
     height: 100vh;
 }
 
-
 .blog-posts-container {
     display: flex;
     justify-content: center;
-    gap: 50px;   
+    gap: 50px;
 }
 
 .red {

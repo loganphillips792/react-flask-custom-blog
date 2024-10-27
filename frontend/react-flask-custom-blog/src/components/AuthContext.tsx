@@ -34,13 +34,13 @@ export const AuthProvider = ({ children }: any) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log("Checking auth... use effect")
+        console.log("Checking auth... use effect");
         checkAuth();
     }, []);
 
     const checkAuth = async () => {
         try {
-            console.log("Checking auth...")
+            console.log("Checking auth...");
             const response = await fetch(`${url}/check-auth}`, {
                 credentials: "include",
             });

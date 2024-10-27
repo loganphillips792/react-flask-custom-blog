@@ -34,17 +34,11 @@ function AllBlogPosts() {
                 </div>
             ))} */}
 
-        <div className={style["blog-posts-container"]}>
-        {blogPosts.map((post: any) => (
-            <ArticleCard
-                id={post.id}
-                title={post.title}
-                content={post.content}
-
-            />
-        ))}
-        </div>
-        
+            <div className={style["blog-posts-container"]}>
+                {blogPosts.map((post: any) => (
+                    <ArticleCard id={post.id} title={post.title} content={post.content} />
+                ))}
+            </div>
         </div>
     );
 }

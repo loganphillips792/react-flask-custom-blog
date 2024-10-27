@@ -5,7 +5,7 @@ import { useAuth } from "./AuthContext";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = () => {
-    console.log("protected route...")
+    console.log("protected route...");
     const { authenticated, loading } = useAuth();
 
     if (loading) {
