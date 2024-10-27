@@ -1,10 +1,10 @@
 .container {
     border: 2px solid red;
-    height: 100vh;
 }
 
 .blog-posts-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 50px;
 }

@@ -1,7 +1,7 @@
 import { createTheme, MantineProvider } from "@mantine/core";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import AddBlogPost from "./components/AddBlogPost";
+import CreateBlogPost from "./components/CreateBlogPost";
 import Admin from "./components/Admin";
 import AllBlogPosts from "./components/AllBlogPosts";
 import BlogPost from "./components/BlogPost";
@@ -19,7 +19,7 @@ function App() {
         <MantineProvider theme={theme}>
             <Router>
                 <Routes>
-                    <Route path="/add-blog-post" element={<AddBlogPost />} />
+                    <Route path="/create-blog-post" element={<CreateBlogPost />} />
                     <Route path="/all-blog-posts" element={<AllBlogPosts />} />
                     <Route path="/blog/:blogPostId" element={<BlogPost />} />
                     <Route element={<ProtectedRoute />}>

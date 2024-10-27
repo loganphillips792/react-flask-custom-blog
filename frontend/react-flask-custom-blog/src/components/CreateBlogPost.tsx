@@ -11,7 +11,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const url = config.url.BASE_URL;
 
-function AddBlogPost() {
+function CreateBlogPost() {
     const [content, setContent] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,10 +35,7 @@ function AddBlogPost() {
             const { id } = await response.json();
 
             if (response.ok) {
-                alert("Blog post saved successfully!");
                 setContent("");
-                // console.log(data);
-                console.log(id);
                 navigate(`/blog/${id}`);
             } else {
                 alert("Failed to save blog post");
@@ -65,4 +62,4 @@ function AddBlogPost() {
     );
 }
 
-export default AddBlogPost;
+export default CreateBlogPost;
