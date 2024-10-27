@@ -13,7 +13,7 @@ RUN pwd
 RUN ls /app
 
 # Install the required packages
-RUN pip install --no-cache-dir -r backend/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
