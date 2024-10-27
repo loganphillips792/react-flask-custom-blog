@@ -39,12 +39,12 @@ def register():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-
+    print(data)
     if not username or not password:
         return jsonify({'error': 'Missing username or password'}), 400
 
     if User.query.filter_by(username=username).first():
-        return jsonify({'Username already exists'}), 400
+        return jsonify({'error': 'Username already exists'}), 400
 
     hashed_password = generate_password_hash(password)
     new_user = User(username=username, password=hashed_password)

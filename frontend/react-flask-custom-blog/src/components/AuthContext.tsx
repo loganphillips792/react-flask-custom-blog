@@ -13,25 +13,35 @@ interface UserContextType {
         password: string,
     ) => Promise<{
         success: boolean;
-        error?: undefined;
+        error?: string;
     }>;
     logout: () => Promise<void>;
 }
 
-const AuthContext = createContext<UserContextType | null>(null);
+const AuthContext = createContext<UserContextType>({
+    authenticated: false,
+    user: null,
+    loading: false,
+    login: async () => ({ success: false, error: "Context not initialized" }),
+    logout: async () => {},
+});
 
 export const AuthProvider = ({ children }: any) => {
+    console.log("auth provider");
+
     const [authenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        console.log("Checking auth... use effect")
         checkAuth();
     }, []);
 
     const checkAuth = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/check-auth", {
+            console.log("Checking auth...")
+            const response = await fetch(`${url}/check-auth}`, {
                 credentials: "include",
             });
             const data = await response.json();

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { config } from "../constants";
 import { useAuth } from "./AuthContext";
+
+const url = config.url.BASE_URL;
 
 export default function LoginAndRegister() {
     return (
@@ -61,19 +64,19 @@ function Register() {
         e.preventDefault();
         setError("");
 
-        const response = await fetch("http://localhost:5000/api/register", {
+        const response = await fetch(`${url}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials: "include",
+            // credentials: "include",
             body: JSON.stringify({ username, password }),
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            navigate("/login");
+            navigate("/all-blog-posts");
         } else {
             setError(data.error);
         }

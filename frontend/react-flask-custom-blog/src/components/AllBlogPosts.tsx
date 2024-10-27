@@ -31,10 +31,6 @@ function AllBlogPosts() {
                     <span>Published: {post.created_at}</span>
                     <span>Updated at: {post.created_at}</span>
                 </div>
-
-                // <li key={post.id}>
-                //     <Link to={`/blog/${post.id}`}>{post.title}</Link>
-                // </li>
             ))}
         </div>
     );
