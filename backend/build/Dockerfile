@@ -6,7 +6,7 @@ WORKDIR /app
 RUN ls
 
 # Copy the current directory contents into the container at /app
-COPY ../backend /app
+COPY ../build../ /app
 
 RUN pwd
 
