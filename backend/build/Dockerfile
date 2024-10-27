@@ -8,6 +8,8 @@ COPY ../ /app
 
 RUN pwd
 
+RUN ls /app
+
 # Install the required packages
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
