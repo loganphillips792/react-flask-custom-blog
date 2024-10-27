@@ -1,11 +1,13 @@
-.blog-posts-container {
+.container {
     border: 2px solid red;
+    height: 100vh;
 }
 
-.blog-post-container {
-    border-bottom: 2px solid grey;
-    padding-top: 16px;
-    padding-bottom: 16px;
+
+.blog-posts-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;   
 }
 
 .red {

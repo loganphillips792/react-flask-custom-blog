@@ -8,10 +8,17 @@ import Home from "./components/Home";
 import Login from "./components/LoginAndRegister";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { createTheme, MantineProvider } from '@mantine/core';
+
+
+const theme = createTheme({
+    /** Put your mantine theme override here */
+  });
 
 function App() {
     return (
-        <Router>
+        <MantineProvider theme={theme}>
+      <Router>
             <Routes>
                 <Route path="/add-blog-post" element={<AddBlogPost />} />
                 <Route path="/all-blog-posts" element={<AllBlogPosts />} />
@@ -24,6 +31,9 @@ function App() {
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Router>
+    </MantineProvider>
+
+        
     );
 }
 
