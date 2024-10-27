@@ -1,4 +1,4 @@
-name: Development Workflow
+name: Deploy to Prod Workflow
 on:
   push:
     branches:
