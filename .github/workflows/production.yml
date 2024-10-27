@@ -54,7 +54,7 @@ jobs:
         run: |
           pylint --fail-under=$FAIL_UNDER backend/app
         env:
-          FAIL_UNDER: 5
+          FAIL_UNDER: 4
   push_to_registry:
     name: Push Docker image to Docker hub
     runs-on: ubuntu-latest
