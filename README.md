@@ -3,6 +3,7 @@
 # TODO:
 
 - Use flask login for authentication for blog
+- move register and login methods to separate files
 
 # Frontend
 
