@@ -1,12 +1,12 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddBlogPost from "./components/AddBlogPost";
+import Admin from "./components/Admin";
 import AllBlogPosts from "./components/AllBlogPosts";
 import BlogPost from "./components/BlogPost";
-import NotFound from "./components/NotFound";
-import Admin from "./components/Admin";
 import Home from "./components/Home";
 import Login from "./components/LoginAndRegister";
+import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {

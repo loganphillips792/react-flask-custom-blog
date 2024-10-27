@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import style from "../markdown-styles.module.css";
+import { useParams } from "react-router-dom";
 import { config } from "../constants";
-
+import style from "../markdown-styles.module.css";
 
 const url = config.url.BASE_URL;
 

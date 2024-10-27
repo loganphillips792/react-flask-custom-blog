@@ -7,7 +7,7 @@ import { config } from "../constants";
 import style from "../create-blog-post.module.css";
 
 // Helper function to create a delay
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const url = config.url.BASE_URL;
 
@@ -31,25 +31,24 @@ function AddBlogPost() {
                 },
                 body: JSON.stringify({ content }),
             });
-      
+
             const { id } = await response.json();
-      
+
             if (response.ok) {
-              alert("Blog post saved successfully!");
-              setContent("");
-              // console.log(data);
-              console.log(id);
-              navigate(`/blog/${id}`)
+                alert("Blog post saved successfully!");
+                setContent("");
+                // console.log(data);
+                console.log(id);
+                navigate(`/blog/${id}`);
             } else {
-              alert("Failed to save blog post");
+                alert("Failed to save blog post");
             }
-        } catch (error) { 
+        } catch (error) {
             alert("An error occurred while saving");
         } finally {
             setIsSubmitting(false);
         }
     };
-    
 
     return (
         <div>
@@ -60,8 +59,8 @@ function AddBlogPost() {
             </form>
             <h2>Preview:</h2>
             <ReactMarkdown>{content}</ReactMarkdown>
-            { isSubmitting ? <span className={style.loader}></span> : null }
-            { isSubmitting ? <div className={style.overlay}></div> : null }
+            {isSubmitting ? <span className={style.loader}></span> : null}
+            {isSubmitting ? <div className={style.overlay}></div> : null}
         </div>
     );
 }
