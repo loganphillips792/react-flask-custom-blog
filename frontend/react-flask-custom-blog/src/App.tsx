@@ -1,10 +1,10 @@
 import { createTheme, MantineProvider } from "@mantine/core";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import CreateBlogPost from "./components/CreateBlogPost";
 import Admin from "./components/Admin";
 import AllBlogPosts from "./components/AllBlogPosts";
 import BlogPost from "./components/BlogPost";
+import CreateBlogPost from "./components/CreateBlogPost";
 import Home from "./components/Home";
 import Login from "./components/LoginAndRegister";
 import NotFound from "./components/NotFound";
