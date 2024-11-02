@@ -87,7 +87,7 @@ def check_auth():
 
 @app.route('/api/hello-world', methods=['GET'])
 def hello_world():
-    app.logger.info('getting all blog posts...')
+    app.logger.info('hello world...')
     return jsonify({'message': "hello world"}), 200
 
 # Authentication decorator
