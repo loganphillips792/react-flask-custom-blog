@@ -85,6 +85,11 @@ def check_auth():
         })
     return jsonify({'authenticated': False}), 401
 
+@app.route('/api/hello-world', methods=['GET'])
+def hello_world():
+    app.logger.info('getting all blog posts...')
+    return jsonify({'message': "hello world"}), 200
+
 # Authentication decorator
 def login_required(f):
     @wraps(f)
