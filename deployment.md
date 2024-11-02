@@ -423,11 +423,11 @@ sudo systemctl restart blog.service
 
 Errors associated with systemctl restart can be seen via cat /var/log/syslog
 
-
-
-
 sudo journalctl -u nginx
 sudo journalctl -u blog
 
 
+## Reverse Proxy Set up
+
+So we don't have to specify the port
 

@@ -8,6 +8,7 @@
 - If user has admin privileges, they can delete blog posts
 - https://www.reddit.com/r/laravel/comments/1e78vct/strategy_for_permission_and_authorisation_design/
 - Claude code for flask roles and permissions
+- Run app via flask command instead of python3
 
 # Frontend
 
