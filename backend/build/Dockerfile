@@ -4,6 +4,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 ARG CACHE_BUST
+RUN echo "Cache busting with value: $CACHE_BUST" && ls
 RUN ls
 
 # Copy the current directory contents into the container at /app
