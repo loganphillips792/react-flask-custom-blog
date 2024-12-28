@@ -11,6 +11,7 @@ COPY ../../requirements.txt /app/requirements.txt
 
 RUN pwd
 
+ARG CACHE_BUST
 RUN ls /app
 
 # Install the required packages
