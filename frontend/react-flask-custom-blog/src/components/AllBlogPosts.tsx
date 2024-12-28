@@ -23,17 +23,8 @@ function AllBlogPosts() {
         <div className={style["container"]}>
             <h1 className={style.red}>All Blog Posts</h1>
 
-            <Link to={`/add-blog-post`}>Create new post</Link>
-
-            {/* {blogPosts.map((post: any) => (
-                <div className={style["blog-post-container"]}>
-                    <Link to={`/blog/${post.id}`}>{post.title}</Link>
-
-                    <span>Published: {post.created_at}</span>
-                    <span>Updated at: {post.created_at}</span>
-                </div>
-            ))} */}
-
+            <Link to={`/create-blog-post`}>Create new post</Link>
+            
             <div className={style["blog-posts-container"]}>
                 {blogPosts.map((post: any) => (
                     <ArticleCard id={post.id} title={post.title} content={post.content} />

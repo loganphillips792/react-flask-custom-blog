@@ -3,16 +3,48 @@ from sqlalchemy.orm import Mapped, mapped_column
 import datetime
 import pytz
 from flask_sqlalchemy import SQLAlchemy
-
-class User(db.Model):
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+    encrypted_password = db.Column(db.String(120), nullable=False)
+    created_at: Mapped[datetime.datetime] = mapped_column(db.DateTime, default=datetime.datetime.now(datetime.timezone.utc))
+
+    def set_password(self, password):
+        return generate_password_hash(password)
+    
+    def check_password(self, password):
+        print(self.encrypted_password)
+        print(password)
+        return check_password_hash(self.encrypted_password, password)
 
     def __repr__(self):
         return f'<User {self.username}'
+    
+    # these methods need to be implemented for flask-login
+    # def is_authenticated(self):
+    #     return False
+
+    # def is_active(self):
+    #     return False
+
+    # def is_anonymous(self):
+    #     return False
+
+    # def get_id():
+    #     # This method must return a str that uniquely identifies this user, and can be used to load the user from the user_loader callback. Note that this must be a str - if the ID is natively an int or some other type, you will need to convert it to str.
+    #     return ""
+
+class Session(db.Model):
+    __tablename__ = 'sessions'
+    id = db.Column(db.Integer, primary_key=True)
+    session_id = db.Column(db.String(255), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    data = db.Column(db.Text, nullable=True)
+    expires_at = db.Column(db.DateTime(timezone=True), nullable=False)
 
 # https://docs.sqlalchemy.org/en/20/core/types.html
 class BlogPost(db.Model):
