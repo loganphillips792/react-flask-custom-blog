@@ -28,7 +28,7 @@ ENV FLASK_APP=app.py
 
 # RUN ls
 # RUN ls app
-RUN ls instance
+# RUN ls instance
 
 # RUN python db/__init__db.py
 
