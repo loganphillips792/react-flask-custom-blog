@@ -7,6 +7,7 @@ RUN ls
 
 # Copy the current directory contents into the container at /app
 COPY ../build/../ /app
+COPY ../requirements.txt /app/requirements.txt
 
 RUN pwd
 
