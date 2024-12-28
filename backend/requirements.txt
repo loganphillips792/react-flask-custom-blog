@@ -9,3 +9,4 @@ boto3
 flask_sqlalchemy
 pytz
 gunicorn
+flask-login

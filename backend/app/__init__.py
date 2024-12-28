@@ -28,8 +28,12 @@ dictConfig({
 load_dotenv()
 
 SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URI')
+SESSION_LIFETIME_DAYS=os.environ.get('SESSION_LIFETIME_DAYS')
+SECRET_KEY=os.environ.get('SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SESSION_LIFETIME'] = SESSION_LIFETIME_DAYS
+app.config['SECRET_KEY'] = SECRET_KEY
 
 db = SQLAlchemy(app)
 
