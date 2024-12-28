@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
+import { Textarea } from '@mantine/core';
+
 
 import { config } from "../constants";
 
@@ -51,7 +53,14 @@ function CreateBlogPost() {
         <div>
             <h1>Add Blog Post</h1>
             <form onSubmit={handleSubmit}>
-                <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={10} cols={50} />
+                {/* <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={10} cols={50} /> */}
+                <Textarea
+                    label="Input label"
+                    description="Input description"
+                    placeholder="Input placeholder"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+    />
                 <button type="submit">Save</button>
             </form>
             <h2>Preview:</h2>

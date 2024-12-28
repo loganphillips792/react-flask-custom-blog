@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  description: API for user management and blog posts.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000
+tags:
+  - name: Users
+    description: Operations related to user management
+  - name: Blog Posts
+    description: Operations related to blog posts
+paths:
+  # User Management
+  /api/register:
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: test123
+                password:
+                  type: string
+                  example: password123
+      responses:
+        '201':
+          description: User created successfully
+      x-code-samples:
+        - lang: CURL
+          source: |
+            curl --location 'http://127.0.0.1:5000/api/register' \
+            --header 'Content-Type: application/json' \
+            --data '{
+                "username": "test123",
+                "password": "password123"
+            }'
+  /api/login:
+    post:
+      tags:
+        - Users
+      summary: Login a user
+      description: Creates a new session in the database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: test123
+                password:
+                  type: string
+                  example: password123
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Login Successful
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      username:
+                        type: string
+                        example: test123
+      x-code-samples:
+        - lang: CURL
+          source: |
+            curl --location 'http://127.0.0.1:5000/api/login' \
+            --header 'Content-Type: application/json' \
+            --data '{
+                "username": "test123",
+                "password": "password123"
+            }'
+  # Blog Posts
+  /api/save-blog-post:
+    post:
+      tags:
+        - Blog Posts
+      summary: Create a new blog post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: hello world
+      responses:
+        '201':
+          description: Blog post created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 2
+                  message:
+                    type: string
+                    example: Blog post saved successfully
+      x-code-samples:
+        - lang: CURL
+          source: |
+            curl --location 'http://127.0.0.1:5000/api/save-blog-post' \
+            --header 'Content-Type: application/json' \
+            --header 'Cookie: session=.eJwlzjEOwzAIQNG7eO6AMWCay1RgQO2aNFPVuzdSlz9-vU971J7Hs23v_cxbe7yibU1iAHiwWaCrRt2rUtUkgowYlaWXAV_pa2l3UrdEFBHEATFHj1UoTDAF1dMKqAv4YFxBNJOuAQzlwpi-ePIAR9J0ZwprF-Q8cv9revv-AOaXL0k.Z0wWTA.SPmoCANow55IUnNvC_ZW20WNiyY; session_id=sekHcpIdnC6TcyvkqBsS5A8_rSvY8nXst4EQzSEk9Nk' \
+            --data '{
+                "content": "hello world"
+            }'
+  /api/all-blog-posts:
+    get:
+      tags:
+        - Blog Posts
+      summary: Get all blog posts
+      responses:
+        '200':
+          description: List of all blog posts
+      x-code-samples:
+        - lang: CURL
+          source: |
+            curl http://127.0.0.1:5000/api/all-blog-posts

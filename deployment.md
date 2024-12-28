@@ -23,6 +23,7 @@ ssh into digital ocean droplet
 ssh root@<ipv4>
 
 sudo apt update
+sudo apt -y upgrade
 
 sudo apt install nodejs npm
 
@@ -362,3 +363,71 @@ Base directory: frontend/react-flask-custom-blog
 Package directory: not set
 Build command: npm run build
 publish directory: frontend/react-flask-custom-blog/dist
+
+# Flask Setup
+
+SSH into digital ocean droplet: 157.230.5.245
+
+cat /var/log/nginx/access.log
+cat /var/log/nginx/error.log
+
+
+1. sudo apt update
+2. sudo apt -y upgrade
+3. apt install python3.12-venv
+4. cd ~
+5. sudo python3 -m venv blog-venv
+6. sudo source ~/blog-venv/bin/activate
+7. which pip
+8. ~/blog-venv/bin/python3 -m pip install --upgrade pip
+9. pip install -r react-flask-custom-blog/backend/requirements.txt
+10. cp .env.example .env
+11. python app.py to make sure there aren't any errors
+
+
+cd ~/react-flask-custom-blog/backend
+
+gunicorn --workers 3 --bind 0.0.0.0:5000 -m 007 app:app
+
+curl request to test: curl <ipv4>:5000/api/hello-world
+
+Now that we know the app is running successfully, we will create a service:
+
+
+vim /etc/systemd/system/blog.service:
+```
+[Unit]
+Description=Gunicorn instance to serve your Flask app
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/react-flask-custom-blog/backend
+Environment="PATH=/root/blog-venv/bin"
+ExecStart=/root/blog-venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 -m 007 app:app
+
+[Install]
+WantedBy=multi-user.target
+```
+
+curl request to test: curl <ipv4>:5000/api/hello-world to make sure that the gunicorn service is running
+
+
+sudo systemctl start blog.service
+sudo systemctl enable blog.service
+sudo systemctl status blog.service
+
+after change to service file: systemctl daemon-reload
+sudo systemctl restart blog.service
+
+Errors associated with systemctl restart can be seen via cat /var/log/syslog
+
+sudo journalctl -u nginx
+sudo journalctl -u blog
+
+
+## Reverse Proxy Set up
+
+So we don't have to specify the port
+

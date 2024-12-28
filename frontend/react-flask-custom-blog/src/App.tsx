@@ -22,10 +22,10 @@ function App() {
                     <Route path="/create-blog-post" element={<CreateBlogPost />} />
                     <Route path="/all-blog-posts" element={<AllBlogPosts />} />
                     <Route path="/blog/:blogPostId" element={<BlogPost />} />
-                    <Route element={<ProtectedRoute />}>
+                    {/* <Route element={<ProtectedRoute />}>
                         <Route path="/admin" element={<Admin />} />
                     </Route>
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login />} /> */}
                     <Route path="/" element={<Home />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
