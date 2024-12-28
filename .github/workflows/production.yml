@@ -78,7 +78,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: dockedupstream/digitaloceanpythondevelopment
-      - name: Generate a timestamp
+      - name: Generate a timestamp # Not used right now
         run: echo "CACHE_BUST=$(date +%s)" >> $GITHUB_ENV
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
