@@ -137,7 +137,7 @@ jobs:
       - name: Deploy code
         run: |
           ssh -o StrictHostKeyChecking=no root@$DO_DROPLET_IP << 'EOF'
-            cd /root/react-flask-custom-blog
+            cd /root/react-flask-custom-blog/frontend/react-flask-custom-blog
             git pull origin main
             npm install
             npm run build
