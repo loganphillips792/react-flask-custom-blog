@@ -366,7 +366,7 @@ publish directory: frontend/react-flask-custom-blog/dist
 
 # Flask Setup
 
-SSH into digital ocean droplet: 157.230.5.245
+SSH into digital ocean droplet: `ssh root@<ipv4_of_droplet>`
 
 cat /var/log/nginx/access.log
 cat /var/log/nginx/error.log
@@ -377,7 +377,7 @@ cat /var/log/nginx/error.log
 3. apt install python3.12-venv
 4. cd ~
 5. sudo python3 -m venv blog-venv
-6. sudo source ~/blog-venv/bin/activate
+6. source ~/blog-venv/bin/activate
 7. which pip
 8. ~/blog-venv/bin/python3 -m pip install --upgrade pip
 9. pip install -r react-flask-custom-blog/backend/requirements.txt
@@ -389,7 +389,7 @@ cd ~/react-flask-custom-blog/backend
 
 gunicorn --workers 3 --bind 0.0.0.0:5000 -m 007 app:app
 
-curl request to test: curl <ipv4>:5000/api/hello-world
+curl request to test: `curl <ipv4>:5000/api/hello-world`
 
 Now that we know the app is running successfully, we will create a service:
 
@@ -431,3 +431,13 @@ sudo journalctl -u blog
 
 So we don't have to specify the port
 
+## Continous Deployment Setup
+
+1. Generate an SSH keypair on your droplet and add the public key to GitHub as a Deploy Key: `ssh-keygen -t ed25519 -C "your-email@example.com"`
+	- Save the key to the default location of `~/.ssh/id_ed225519``
+2. Add the public key to your Github repo: Repo > Settings > Deploy Keys > Add Deploy key (This allows your DigitalOcean droplet to access your GitHub repository via SSH)
+3. Add the private key to your repo's Secrets as DD_SSH_PRIVATE_KEY so that Github Actions can use the private key (This allows GitHub Actions (running on GitHub's servers) to SSH into your DigitalOcean droplet to execute commands)
+	- Repo > Settings > Secrets and variables > Actions > New Repository Secret
+## Docker Installation on Droplet
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
