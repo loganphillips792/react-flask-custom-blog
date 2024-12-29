@@ -58,8 +58,9 @@ jobs:
           pylint --fail-under=$FAIL_UNDER backend/app
         env:
           FAIL_UNDER: 4
-  push_to_registry:  
-    if: github.ref_name == 'main'
+  push_to_registry:
+    # if: github.ref_name == 'main'
+    if: false
     name: Push Docker image to Docker hub
     runs-on: ubuntu-latest
     needs:
