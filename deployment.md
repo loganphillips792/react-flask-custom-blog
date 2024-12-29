@@ -18,32 +18,37 @@
     - Project: react-blog
     
 
-ssh into digital ocean droplet
+1. ssh into digital ocean droplet: `ssh root@<ipv4>`
+2. `sudo apt update`
+3. `sudo apt -y upgrade`
+4. `sudo apt install nodejs npm`
+5. confirm node and npm was installed correctly:
+    - `node -v`
+    - `npm -v`
 
-ssh root@<ipv4>
+6. `git clone https://github.com/loganphillips792/react-flask-custom-blog.git`
+7. `cd react-flask-custom-blog/frontend/react-flask-custom-blog`
+8. `npm install`
+9. `npm run build` - prepare app for production. This creates a build/ directory with the production-ready files
+		- If the command fails with `Killed`, then the issue is probably no swap memory available
+		- `sudo free -h` to check if there is any swap memory available. If 0, then that is the issue
+		- Add swap memory
+			1. sudo fallocate -l 1G /swapfile
+			2. ls -lh /swapfile to verify
+			3. sudo chmod 600 /swapfile
+			4. ls -lh /swapfile to verify
+			5. sudo mkswap /swapfile to mark the file as swap space
+			6. sudo swapon /swapfile to enable it
+			7. sudo swapon --show to verify that the swap is available
+			8. free -h to verify again
+			9. Our recent changes have enabled the swap file for the current session. However, if we reboot, the server will not retain the swap settings automatically. We can change this by adding the swap file to our /etc/fstab file
+				1. sudo cp /etc/fstab /etc/fstab.bak to back up the /etc/fstab file just incase
+				2. echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab add the swap file information
+			10. `npm run build` should work now
 
-sudo apt update
-sudo apt -y upgrade
-
-sudo apt install nodejs npm
-
-confirm:
-    - node -v
-    - npm -v
-
-git clone https://github.com/loganphillips792/react-flask-custom-blog.git
-cd react-flask-custom-blog/frontend/react-flask-custom-blog
-
-npm install
-
-npm run build - prepare app for production. This creates a build/ directory with the production-ready files
-
-
-npm install -g serve
-
-serve -s dist
-
-Now you should be able to access at: ipv4@:3000
+10. npm install -g serve
+11. serve -s dist (this should only be used for testing)
+12. Now you should be able to access at: ipv4@:3000
 
 
 ## Nginx - Reverse Proxy
