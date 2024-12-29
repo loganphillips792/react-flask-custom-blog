@@ -114,7 +114,7 @@ jobs:
               cd /root/react-flask-custom-blog
               git pull origin main
               source /root/blog-venv/bin/activate
-              pip install -r requirements.txt
+              pip install -r requirements.txt || exit 1 # Exit immediately if a command exits with a non-zero status
               sudo systemctl restart blog.service
             EOF
 

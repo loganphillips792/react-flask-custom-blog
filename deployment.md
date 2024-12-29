@@ -441,6 +441,15 @@ So we don't have to specify the port
 4. Add the DO droplet ipv4 address to the repo's Secret as `DO_DROPLET_IP`
 	- Repo > Settings > Secrets and variables > Actions > New Repository Secret
 
+
+Note: If there are any issues with ssh connection such as `root@1<ipv4>: Permission denied (publickey)``
+- Check if the public key is added to authorized_keys: cat ~/.ssh/id_ed25519.pub
+	- If the public key is not there:
+		- `cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys`
+- To check the ssh connection: `ssh -T git@github.com`
+	- If successful, you will see a message like `Hi username! You've successfully authenticated, but GitHub does not provide shell access.`
+
+
 ## Docker Installation on Droplet
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
