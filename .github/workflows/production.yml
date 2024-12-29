@@ -117,7 +117,35 @@ jobs:
               pip install -r backend/requirements.txt || exit 1 # Exit immediately if a command exits with a non-zero status
               sudo systemctl restart blog.service
             EOF
-
+  deploy_frontend_without_docker:
+    if: github.ref_name == 'main'
+    name: Deploy React to Digital Ocean Droplet
+    runs-on: ubuntu-latest
+    environment: production
+    needs:
+      - test_backend
+      - lint_backend
+    env:
+      DO_DROPLET_IP: ${{ vars.DO_DROPLET_IP }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+      - name: Deploy code
+        run: |
+          ssh -o StrictHostKeyChecking=no root@$DO_DROPLET_IP << 'EOF'
+            cd /root/react-flask-custom-blog
+            git pull origin main
+            npm install
+            npm run build
+            pm2 stop react-app || true
+            # pm2 serve /path/to/your/project/build 3000 --name "react-app" --spa
+            pm2 start "npx serve -s build" --name react-app
+            pm2 save
+          EOF
       
 
 

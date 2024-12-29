@@ -30,21 +30,21 @@
 7. `cd react-flask-custom-blog/frontend/react-flask-custom-blog`
 8. `npm install`
 9. `npm run build` - prepare app for production. This creates a build/ directory with the production-ready files
-		- If the command fails with `Killed`, then the issue is probably no swap memory available
-		- `sudo free -h` to check if there is any swap memory available. If 0, then that is the issue
-		- Add swap memory
-			1. sudo fallocate -l 1G /swapfile
-			2. ls -lh /swapfile to verify
-			3. sudo chmod 600 /swapfile
-			4. ls -lh /swapfile to verify
-			5. sudo mkswap /swapfile to mark the file as swap space
-			6. sudo swapon /swapfile to enable it
-			7. sudo swapon --show to verify that the swap is available
-			8. free -h to verify again
-			9. Our recent changes have enabled the swap file for the current session. However, if we reboot, the server will not retain the swap settings automatically. We can change this by adding the swap file to our /etc/fstab file
-				1. sudo cp /etc/fstab /etc/fstab.bak to back up the /etc/fstab file just incase
-				2. echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab add the swap file information
-			10. `npm run build` should work now
+	- If the command fails with `Killed`, then the issue is probably no swap memory available
+	- `sudo free -h` to check if there is any swap memory available. If 0, then that is the issue
+	- Add swap memory
+		1. sudo fallocate -l 1G /swapfile
+		2. ls -lh /swapfile to verify
+		3. sudo chmod 600 /swapfile
+		4. ls -lh /swapfile to verify
+		5. sudo mkswap /swapfile to mark the file as swap space
+		6. sudo swapon /swapfile to enable it
+		7. sudo swapon --show to verify that the swap is available
+		8. free -h to verify again
+		9. Our recent changes have enabled the swap file for the current session. However, if we reboot, the server will not retain the swap settings automatically. We can change this by adding the swap file to our /etc/fstab file
+			1. sudo cp /etc/fstab /etc/fstab.bak to back up the /etc/fstab file just incase
+			2. echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab add the swap file information
+		10. `npm run build` should work now
 
 10. npm install -g serve
 11. serve -s dist (this should only be used for testing)
@@ -189,12 +189,9 @@ Run serve -s dist and now you should be able to access at ipv4@:80 instead of ip
 Now we will use PM2 to run serve -s dist as a background process
 
 
-npm install -g pm2
-
-
-pm2 start serve --name "react-app" -- -s dist
-
-pm2 startup - Ensure the process starts on reboot: To make sure the app starts when the server reboots, you need to set up pm2 to run at startup
+1. npm install -g pm2
+2. `pm2 start serve --name "react-app" -- -s dist` will cause an error. You have to do `pm2 start "npx serve -s build" --name react-app`
+3. pm2 startup - Ensure the process starts on reboot: To make sure the app starts when the server reboots, you need to set up pm2 to run at startup
 
 pm2 save - Save the process list: After setting up the startup script, save the current running processes to be restored automatically on reboot
 
