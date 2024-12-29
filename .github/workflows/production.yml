@@ -142,10 +142,9 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            pm2 stop react-app || true
             # pm2 serve /path/to/your/project/build 3000 --name "react-app" --spa
-            pm2 start "npx serve -s build" --name react-app
-            pm2 save
+            pm2 restart react-app || pm2 start "npx serve -s build" --name react-app # If pm2 restart fails (e.g., the process isn't found), this command will start the process
+            pm2 save # Ensures the updated PM2 process list is saved for persistence across server reboots
           EOF
       
 
