@@ -435,9 +435,12 @@ So we don't have to specify the port
 
 1. Generate an SSH keypair on your droplet and add the public key to GitHub as a Deploy Key: `ssh-keygen -t ed25519 -C "your-email@example.com"`
 	- Save the key to the default location of `~/.ssh/id_ed225519``
-2. Add the public key to your Github repo: Repo > Settings > Deploy Keys > Add Deploy key (This allows your DigitalOcean droplet to access your GitHub repository via SSH)
+2. Add the public key (~/.ssh/id_ed25519.pub) to your Github repo: Repo > Settings > Deploy Keys > Add Deploy key (This allows your DigitalOcean droplet to access your GitHub repository via SSH)
 3. Add the private key to your repo's Secrets as DD_SSH_PRIVATE_KEY so that Github Actions can use the private key (This allows GitHub Actions (running on GitHub's servers) to SSH into your DigitalOcean droplet to execute commands)
 	- Repo > Settings > Secrets and variables > Actions > New Repository Secret
+4. Add the DO droplet ipv4 address to the repo's Secret as `DO_DROPLET_IP`
+	- Repo > Settings > Secrets and variables > Actions > New Repository Secret
+
 ## Docker Installation on Droplet
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
