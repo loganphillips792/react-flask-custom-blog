@@ -192,8 +192,8 @@ Now we will use PM2 to run serve -s dist as a background process
 1. npm install -g pm2
 2. `pm2 start serve --name "react-app" -- -s dist` will cause an error. You have to do `pm2 start "npx serve -s dist" --name react-app`
 3. pm2 startup - Ensure the process starts on reboot: To make sure the app starts when the server reboots, you need to set up pm2 to run at startup
-
-pm2 save - Save the process list: After setting up the startup script, save the current running processes to be restored automatically on reboot
+4. pm2 save - Save the process list: After setting up the startup script, save the current running processes to be restored automatically on reboot
+5. `<ipv4>:3000/all-blog-posts` in your browser to test
 
 
 - pm2 list - check running apps
