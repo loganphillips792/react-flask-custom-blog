@@ -169,7 +169,10 @@ server {
 
 ```
 
-sudo systemctl restart nginx
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart nginx.service
 
 
 Run serve -s dist and now you should be able to access at ipv4@:80 instead of ipv4@:3000
@@ -194,7 +197,7 @@ Now we will use PM2 to run serve -s dist as a background process
 3. pm2 startup - Ensure the process starts on reboot: To make sure the app starts when the server reboots, you need to set up pm2 to run at startup
 4. pm2 save - Save the process list: After setting up the startup script, save the current running processes to be restored automatically on reboot
 5. `<ipv4>:3000/all-blog-posts` in your browser to test
-
+6. pm2 stop react-app and `<ipv4>:3000` and note that it breaks
 
 - pm2 list - check running apps
 - pm2 logs react-app - view logs
@@ -243,6 +246,8 @@ WantedBy=multi-user.target
 ## Nginx - serve static files
 
 Using Nginx as a web server
+
+`vim /etc/nginx/sites-available/default`
 
 ```
 ##
@@ -356,7 +361,9 @@ if you go to ipv4:80, you will see the Nginx set up page
 
 Can now access files like http://157.230.5.245/vite.svg
 
-
+To further test:
+sudo systemctl stop nginx.service and :80 should fail
+sudo systemctl start nginx.service and :80 should work again
 
 ## Netlify
 
