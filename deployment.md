@@ -53,7 +53,7 @@
 
 ## Nginx - Reverse Proxy
 
-so we don't have to include the port
+so we don't have to include the port and it is mapped to port 80
 
 sudo apt install nginx
 
@@ -169,13 +169,14 @@ server {
 
 ```
 
-
-sudo systemctl daemon-reload
-
 sudo systemctl restart nginx.service
 
 
-Run serve -s dist and now you should be able to access at ipv4@:80 instead of ipv4@:3000
+Run `serve -s dist`(if not already running via `pm2`) and now you should be able to access at `ipv4@:80` instead of `ipv4@:3000`
+
+To further test:
+`sudo systemctl stop nginx.service` and `ipv4@:80` should fail
+`sudo systemctl start nginx.service` and `ipv4@:80` should work again
 
 
 ## SSL Certificate Setup
@@ -361,10 +362,6 @@ server {
 if you go to ipv4:80, you will see the Nginx set up page
 
 Can now access files like http://157.230.5.245/vite.svg
-
-To further test:
-sudo systemctl stop nginx.service and :80 should fail
-sudo systemctl start nginx.service and :80 should work again
 
 ## Netlify
 
