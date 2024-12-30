@@ -21,7 +21,7 @@ function AllBlogPosts() {
 
     return (
         <div className={style["container"]}>
-            <h1 className={style.red}>All Blog Posts</h1>
+            <h1 className={style.red}>All Blog Posts !!</h1>
 
             <Link to={`/create-blog-post`}>Create new post</Link>
             
