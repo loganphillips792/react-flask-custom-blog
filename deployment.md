@@ -198,6 +198,7 @@ Now we will use PM2 to run serve -s dist as a background process
 4. pm2 save - Save the process list: After setting up the startup script, save the current running processes to be restored automatically on reboot
 5. `<ipv4>:3000/all-blog-posts` in your browser to test
 6. pm2 stop react-app and `<ipv4>:3000` and note that it breaks
+7. pm2 start react-app and `<ipv4>:3000` and note that it works again
 
 - pm2 list - check running apps
 - pm2 logs react-app - view logs
