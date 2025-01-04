@@ -138,7 +138,7 @@ jobs:
       - name: Deploy code
         run: |
           ssh -o StrictHostKeyChecking=no root@$DO_DROPLET_IP << 'EOF'
-            bash -s" < backend/deploy.sh
+            bash -s < backend/deploy.sh
           EOF
         env:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
