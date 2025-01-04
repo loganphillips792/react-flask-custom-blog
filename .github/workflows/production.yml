@@ -139,6 +139,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@$DO_DROPLET_IP << 'EOF'
             cd /root/react-flask-custom-blog
+            ls
             bash -s < backend/deploy.sh
           EOF
         env:
