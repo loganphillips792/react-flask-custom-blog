@@ -19,6 +19,7 @@ https://flask-login.readthedocs.io/en/latest/
 - Put grafana and prometheus on DO server
 - Deploy python to DO and restart through actions
 - login page UI
+- When deploying backend via docker, if there are any fatal errors inside docker container, fail github actions job
 
 # Frontend
 
