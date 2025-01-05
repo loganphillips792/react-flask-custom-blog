@@ -131,6 +131,7 @@ jobs:
     needs:
       - test_backend
       - lint_backend
+      - push_to_registry
     env:
       DO_DROPLET_IP: ${{ vars.DO_DROPLET_IP }}
     steps:
