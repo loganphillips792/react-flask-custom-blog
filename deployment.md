@@ -487,4 +487,6 @@ Install latest packages
 
 `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
 
+`sudo systemctl status docker`
+
 `docker ps` to test installation
