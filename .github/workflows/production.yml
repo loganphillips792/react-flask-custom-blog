@@ -177,6 +177,7 @@ jobs:
             cd /root/react-flask-custom-blog/frontend/react-flask-custom-blog
             git pull origin main
             npm install
+            export NODE_OPTIONS="--max-old-space-size=4096" # to fix error FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
             npm run build
             # pm2 serve /path/to/your/project/build 3000 --name "react-app" --spa
             pm2 restart react-app || pm2 start "npx serve -s dist" --name react-app # If pm2 restart fails (e.g., the process isn't found), this command will start the process
