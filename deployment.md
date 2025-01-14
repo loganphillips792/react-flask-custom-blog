@@ -1,5 +1,13 @@
 # Digital Ocean
 
+# Overview
+
+- React is pulled onto the serve and the dist folder is built. Nginx is also used to map port 3000 to 80 so the frontend can be accessed at both `<ipv4>:3000` (through pm2) or `<ipv4>:80`
+
+- Backend is built via Docker. Flask app is ran using Gunicorn as a systemd service. Can be accessed on port 5000 or port <tbd> via nginx reverse proxy
+
+## Droplet Set up
+
 1. Create new project
 2. Manage > Droplets
 3. Create Droplet
