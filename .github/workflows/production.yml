@@ -155,7 +155,7 @@ jobs:
 
   deploy_frontend_without_docker:
     # if: github.ref_name == 'main'
-    if: false
+    # if: false
     name: Deploy React to Digital Ocean Droplet
     runs-on: ubuntu-latest
     environment: production
