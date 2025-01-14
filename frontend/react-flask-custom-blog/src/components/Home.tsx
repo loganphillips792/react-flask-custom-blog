@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
     let role = "admin";
-    let user = "user";
+    // let user = "user";
     let authenticated = false;
     return (
         <div>

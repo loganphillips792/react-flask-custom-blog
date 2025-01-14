@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { config } from "../constants";
+// import { config } from "../constants";
 import { useAuth } from "./AuthContext";
 import styles from '../login.module.css';
 
-const url = config.url.BASE_URL;
+// const url = config.url.BASE_URL;
+
+interface FormErrors {
+  email?: string;
+  password?: string;
+}
 
 export default function LoginAndRegister() {
     return (
@@ -18,15 +23,16 @@ export default function LoginAndRegister() {
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<any>("");
-    const [errors, setErrors] = useState({});
+    const [loading, _setLoading] = useState(false);
+    const [_error, setError] = useState<any>("");
+    const [errors, _setErrors] = useState<FormErrors>({});
 
     const { login } = useAuth();
     const navigate = useNavigate();
 
+    /*
     const validateForm = () => {
-        const newErrors = {};
+        const newErrors: FormErrors = {};
         
         // Email validation
         if (!email) {
@@ -45,7 +51,7 @@ function Login() {
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
       };
-
+    */
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setError("");
