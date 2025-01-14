@@ -9,7 +9,7 @@ function Home() {
     let authenticated = false;
     return (
         <div>
-            <h1>Home Page</h1>
+            <h1>Home Page!</h1>
 
             <div>Your role is: {role}</div>
             {/* <span>Welcome, {user?.username}!</span> */}
