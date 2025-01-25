@@ -20,6 +20,7 @@ function App() {
         <MantineProvider theme={theme}>
             <Router>
                 <Routes>
+                    {/* <Layout /> uses <Outlet /> which renders the matching child route of a parent route or nothing if no child route matches. */}
                     <Route element={<Layout />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/create-blog-post" element={<CreateBlogPost />} />
