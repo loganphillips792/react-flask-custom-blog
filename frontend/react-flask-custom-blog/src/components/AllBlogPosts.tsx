@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import style from "../all-blog-posts.module.css";
 
 import { config } from "../constants";
@@ -19,12 +18,19 @@ function AllBlogPosts() {
             .catch((error) => console.error("Error:", error));
     }, []);
 
+    if (blogPosts.length === 0) {
+        return (
+            <div>
+                <h2>No posts yet</h2>
+                <p>Create your first blog post to get started!</p>
+            </div>
+        );
+    }
+
     return (
         <div className={style["container"]}>
             <h1 className={style.red}>All Blog Posts !!</h1>
 
-            <Link to={`/create-blog-post`}>Create new post</Link>
-            
             <div className={style["blog-posts-container"]}>
                 {blogPosts.map((post: any) => (
                     <ArticleCard id={post.id} title={post.title} content={post.content} />

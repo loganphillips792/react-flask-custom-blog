@@ -1,12 +1,11 @@
+import { Button, TextInput, Textarea, Title } from "@mantine/core";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
-import { Textarea } from '@mantine/core';
-
 
 import { config } from "../constants";
 
-import style from "../create-blog-post.module.css";
+import styles from "../create-blog-post.module.css";
 
 // Helper function to create a delay
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -14,6 +13,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const url = config.url.BASE_URL;
 
 function CreateBlogPost() {
+    const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -50,23 +50,37 @@ function CreateBlogPost() {
     };
 
     return (
-        <div>
-            <h1>Add Blog Post</h1>
-            <form onSubmit={handleSubmit}>
-                {/* <textarea value={content} onChange={(e) => setContent(e.target.value)} rows={10} cols={50} /> */}
+        <div className={styles.container}>
+            <Title order={2} className={styles.heading}>
+                Create New Post
+            </Title>
+
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <TextInput
+                    label="Title"
+                    placeholder="Enter a title"
+                    required
+                    value={title}
+                    onChange={(event) => setTitle(event.currentTarget.value)}
+                />
+
                 <Textarea
-                    label="Input label"
-                    description="Input description"
-                    placeholder="Input placeholder"
+                    label="Content"
+                    placeholder="Enter your content here"
+                    required
+                    minRows={8}
                     value={content}
-                    onChange={(e) => setContent(e.target.value)}
-    />
-                <button type="submit">Save</button>
+                    onChange={(event) => setContent(event.currentTarget.value)}
+                />
+
+                <Button type="submit" fullWidth color="blue">
+                    Publish Post
+                </Button>
             </form>
             <h2>Preview:</h2>
             <ReactMarkdown>{content}</ReactMarkdown>
-            {isSubmitting ? <span className={style.loader}></span> : null}
-            {isSubmitting ? <div className={style.overlay}></div> : null}
+            {isSubmitting ? <span className={styles.loader}></span> : null}
+            {isSubmitting ? <div className={styles.overlay}></div> : null}
         </div>
     );
 }
