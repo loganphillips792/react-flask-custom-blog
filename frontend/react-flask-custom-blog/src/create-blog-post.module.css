@@ -1,3 +1,22 @@
+.container {
+    /* equivalent to max-w-2xl and centering  */
+    max-width: 42rem; /* ~672px, close to "max-w-2xl" in Tailwind */
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.heading {
+    font-size: 1.5rem; /* ~24px */
+    font-weight: 600;
+    margin-bottom: 1.5rem; /* ~24px */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* ~24px (equivalent to space-y-6) */
+}
+
 .loader,
 .loader:before,
 .loader:after {
@@ -7,18 +26,21 @@
     animation-fill-mode: both;
     animation: bblFadInOut 1.8s infinite ease-in-out;
 }
+
 .loader {
     color: #fff;
     font-size: 7px;
     position: relative;
-    text-indent: -9999em;
+    /* text-indent: -9999em; */
     transform: translateZ(0);
     animation-delay: -0.16s;
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10000000;
 }
+
 .loader:before,
 .loader:after {
     content: "";
@@ -43,8 +65,6 @@
         box-shadow: 0 2.5em 0 0;
     }
 }
-
-/* overlay */
 
 .overlay {
     position: fixed;
