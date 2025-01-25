@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import style from "../all-blog-posts.module.css";
 
 import { config } from "../constants";
@@ -31,7 +30,7 @@ function AllBlogPosts() {
     return (
         <div className={style["container"]}>
             <h1 className={style.red}>All Blog Posts !!</h1>
-            
+
             <div className={style["blog-posts-container"]}>
                 {blogPosts.map((post: any) => (
                     <ArticleCard id={post.id} title={post.title} content={post.content} />

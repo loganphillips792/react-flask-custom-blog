@@ -1,8 +1,7 @@
+import { Button, TextInput, Textarea, Title } from "@mantine/core";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
-import { Button, TextInput, Textarea, Title } from "@mantine/core";
-
 
 import { config } from "../constants";
 
@@ -53,31 +52,31 @@ function CreateBlogPost() {
     return (
         <div>
             <Title order={2} className={styles.heading}>
-        Create New Post
-      </Title>
+                Create New Post
+            </Title>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <TextInput
-          label="Title"
-          placeholder="Enter a title"
-          required
-          value={title}
-          onChange={(event) => setTitle(event.currentTarget.value)}
-        />
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <TextInput
+                    label="Title"
+                    placeholder="Enter a title"
+                    required
+                    value={title}
+                    onChange={(event) => setTitle(event.currentTarget.value)}
+                />
 
-        <Textarea
-          label="Content"
-          placeholder="Enter your content here"
-          required
-          minRows={8}
-          value={content}
-          onChange={(event) => setContent(event.currentTarget.value)}
-        />
+                <Textarea
+                    label="Content"
+                    placeholder="Enter your content here"
+                    required
+                    minRows={8}
+                    value={content}
+                    onChange={(event) => setContent(event.currentTarget.value)}
+                />
 
-        <Button type="submit" fullWidth color="blue">
-          Publish Post
-        </Button>
-      </form>
+                <Button type="submit" fullWidth color="blue">
+                    Publish Post
+                </Button>
+            </form>
             <h2>Preview:</h2>
             <ReactMarkdown>{content}</ReactMarkdown>
             {isSubmitting ? <span className={styles.loader}></span> : null}
