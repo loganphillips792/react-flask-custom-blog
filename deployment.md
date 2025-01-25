@@ -498,3 +498,7 @@ Install latest packages
 `sudo systemctl status docker`
 
 `docker ps` to test installation
+
+`docker logs my_app`
+
+
