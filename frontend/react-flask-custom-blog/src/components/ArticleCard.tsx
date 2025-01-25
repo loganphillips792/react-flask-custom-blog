@@ -11,7 +11,7 @@ export function ArticleCard({ id, title, content }: { id: number; title: string;
         <Card withBorder radius="md" className={classes.card}>
             <Card.Section>
                 <a {...linkProps}>
-                    <Image src="https://i.imgur.com/Cij5vdL.png" height={180} />
+                    <Image src="/technology_circuit_board_background_closeup_with_technology.png" height={180} />
                 </a>
             </Card.Section>
 

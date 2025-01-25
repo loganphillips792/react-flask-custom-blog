@@ -1,20 +1,20 @@
 .container {
     /* equivalent to max-w-2xl and centering  */
-    max-width: 42rem; /* ~672px, close to "max-w-2xl" in Tailwind */
+    max-width: 42rem;
     margin: 0 auto;
     padding: 1rem;
 }
 
 .heading {
-    font-size: 1.5rem; /* ~24px */
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1.5rem; /* ~24px */
+    margin-bottom: 1.5rem;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* ~24px (equivalent to space-y-6) */
+    gap: 1.5rem;
 }
 
 .loader,
@@ -31,7 +31,6 @@
     color: #fff;
     font-size: 7px;
     position: relative;
-    /* text-indent: -9999em; */
     transform: translateZ(0);
     animation-delay: -0.16s;
     position: fixed;

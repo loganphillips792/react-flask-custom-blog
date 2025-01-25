@@ -21,6 +21,7 @@ https://flask-login.readthedocs.io/en/latest/
 - login page UI
 - When deploying backend via docker, if there are any fatal errors inside docker container, fail github actions job
 - Add WAF firewall https://www.digitalocean.com/products/cloud-firewalls
+- Use flask run instead of python app.py?
 
 # Frontend
 

@@ -50,7 +50,7 @@ function CreateBlogPost() {
     };
 
     return (
-        <div>
+        <div className={styles.container}>
             <Title order={2} className={styles.heading}>
                 Create New Post
             </Title>
