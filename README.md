@@ -23,6 +23,7 @@ https://flask-login.readthedocs.io/en/latest/
 - Add WAF firewall https://www.digitalocean.com/products/cloud-firewalls'
 - Use flask run instead of python app.py?
 - Add voice capabilities: talk like "new heading" "new paragraph"
+- https://www.magicpatterns.com/c/hYt43MsorXSaqweMCsSFyw
 
 # Frontend
 
